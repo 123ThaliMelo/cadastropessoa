@@ -1,0 +1,22 @@
+<h1>Cadastro de Produto</h1>
+<form [formGroup]="cadastroForm" (ngSubmit)="onSubmit()">
+  <label for="nome">Nome do Produto:</label>
+  <input id="nome" formControlName="nome" type="text" />
+  <div *ngIf="cadastroForm.get('nome')?.invalid && cadastroForm.get('nome')?.touched">
+    Nome do produto é obrigatório
+  </div>
+
+  <label for="preco">Preço:</label>
+  <input id="preco" formControlName="preco" type="number" step="0.01" />
+  <div *ngIf="cadastroForm.get('preco')?.invalid && cadastroForm.get('preco')?.touched">
+    Preço é obrigatório e deve ser positivo
+  </div>
+
+  <label for="descricao">Descrição:</label>
+  <textarea id="descricao" formControlName="descricao"></textarea>
+  <div *ngIf="cadastroForm.get('descricao')?.invalid && cadastroForm.get('descricao')?.touched">
+    Descrição é obrigatória
+  </div>
+
+  <button type="submit" [disabled]="cadastroForm.invalid">Cadastrar Produto</button>
+</form>
